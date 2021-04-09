@@ -1,16 +1,16 @@
-version: '3.7' # specify docker-compose version
+version: "3.7" # specify docker-compose version
 
 # Define the services/containers to be run
 services:
   angular:
     hostname: localhost
     container_name: angular
-    build: angular-app
+    build: ../angular11-template
     ports:
       - 8181:80
   express: #name of the second service
     container_name: express
-    build: express-server # specify the directory of the Dockerfile
+    build: ../express-template # specify the directory of the Dockerfile
     ports:
       - "3000:3000" #specify ports forewarding
     links:
@@ -18,7 +18,7 @@ services:
 
   quick-product-api:
     container_name: net-core-api
-    build: quick-product-api
+    build: ../net-core-api-template
     ports:
       - "5051:80"
     links:
@@ -38,3 +38,9 @@ services:
     image: mongo # specify image to build container from
     ports:
       - "27017:27017" # specify port forewarding
+
+  rabbitmq: # name of the third service
+    container_name: rabbit-mq
+    image: rabbitmq:3-management # specify image to build container from
+    ports:
+      - "15672:15672" # specify port forewarding

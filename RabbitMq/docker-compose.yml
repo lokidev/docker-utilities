@@ -3,4 +3,5 @@ services:
     container_name: rabbitmq
     image: rabbitmq:3-management # specify image to build container from
     ports:
+      - "5672:5672"
       - "15672:15672" # specify port forewarding
